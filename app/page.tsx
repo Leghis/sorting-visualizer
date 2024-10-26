@@ -54,9 +54,6 @@ interface SortStats {
     swaps: number;
     timeElapsed: number;
 }
-interface WindowWithWebkit extends Window {
-    webkitAudioContext: typeof AudioContext;
-}
 
 interface SortHistory {
     id: number;
@@ -117,9 +114,9 @@ export default function Page() {
     };
 
     // Audio Context
-    const [audioContext] = useState(() => {
+    const [audioContext] = useState<AudioContext | null>(() => {
         if (typeof window !== "undefined") {
-            return new (window.AudioContext || (window as WindowWithWebkit).webkitAudioContext)();
+            return new (window.AudioContext || (window as unknown as {webkitAudioContext: typeof AudioContext}).webkitAudioContext)();
         }
         return null;
     });
@@ -191,7 +188,8 @@ export default function Page() {
         if (audioContext && audioContext.state === 'suspended' && soundEnabled) {
             audioContext.resume();
         }
-    }, [soundEnabled, audioContext]);
+    }, [audioContext, soundEnabled]);
+
 
     // Fonctions utilitaires
     const sleep = (ms: number) => new Promise((resolve) => {
