@@ -249,7 +249,7 @@ export default function Page() {
         const n = workingArray.length;
 
         for (let i = 0; i < n - 1; i++) {
-            if (!isBenchmark) setCurrentStep(`Passe ${i + 1}/${n - 1}`);
+            if (!isBenchmark) setCurrentStep(`Pass ${i + 1}/${n - 1}`);
             for (let j = 0; j < n - i - 1; j++) {
                 if (!isBenchmark) {
                     workingArray[j].isComparing = true;
@@ -752,7 +752,7 @@ export default function Page() {
         <div className="min-h-screen bg-gradient-to-b from-gray-900 to-gray-800 p-8">
             <div className="max-w-7xl mx-auto">
                 <h1 className="text-4xl font-bold text-white mb-8 text-center">
-                    Visualisation d&#39;Algorithmes de Tri
+                    Sorting Algorithm Visualization
                 </h1>
 
                 <Card className="p-6 bg-gray-800 border-gray-700">
@@ -796,7 +796,7 @@ export default function Page() {
                             variant="outline"
                             className={`${soundEnabled ? 'bg-green-600' : 'bg-gray-600'} text-white`}
                         >
-                            {soundEnabled ? "🔊 Son activé" : "🔈 Son désactivé"}
+                            {soundEnabled ? "🔊 Sound On" : "🔈 Sound Off"}
                         </Button>
 
                         <Button
@@ -804,7 +804,7 @@ export default function Page() {
                             disabled={sorting}
                             variant="secondary"
                         >
-                            Générer un nouveau tableau
+                            Generate New Array
                         </Button>
 
                         <Button
@@ -812,12 +812,12 @@ export default function Page() {
                             disabled={sorting && !isPaused}
                             variant="default"
                         >
-                            {sorting && !isPaused ? "En cours..." : "Démarrer le tri"}
+                            {sorting && !isPaused ? "In progress..." : "Start Sorting"}
                         </Button>
 
                         {sorting && (
                             <Button onClick={togglePause} variant="outline">
-                                {isPaused ? "Reprendre" : "Pause"}
+                                {isPaused ? "Resume" : "Pause"}
                             </Button>
                         )}
                     </div>
@@ -826,13 +826,13 @@ export default function Page() {
                         <Tabs defaultValue="visualization" className="w-full">
                             <TabsList className="w-full justify-start bg-gray-700">
                                 <TabsTrigger value="visualization" className="text-white">
-                                    Visualisation
+                                    Visualization
                                 </TabsTrigger>
                                 <TabsTrigger value="stats" className="text-white">
-                                    Statistiques
+                                    Statistics
                                 </TabsTrigger>
                                 <TabsTrigger value="analytics" className="text-white">
-                                    Analyse
+                                    Analysis
                                 </TabsTrigger>
                             </TabsList>
 
@@ -868,22 +868,22 @@ export default function Page() {
                                 <Card className="p-4 bg-gray-700">
                                     <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                                         <div className="bg-gray-800 p-4 rounded-lg">
-                                            <p className="text-white text-sm">Comparaisons</p>
+                                            <p className="text-white text-sm">Comparisons</p>
                                             <p className="text-white text-2xl font-bold">{stats.comparisons}</p>
                                         </div>
                                         <div className="bg-gray-800 p-4 rounded-lg">
-                                            <p className="text-white text-sm">Échanges</p>
+                                            <p className="text-white text-sm">Swaps</p>
                                             <p className="text-white text-2xl font-bold">{stats.swaps}</p>
                                         </div>
                                         <div className="bg-gray-800 p-4 rounded-lg">
-                                            <p className="text-white text-sm">Temps</p>
+                                            <p className="text-white text-sm">Time</p>
                                             <p className="text-white text-2xl font-bold">
                                                 {(stats.timeElapsed / 1000).toFixed(2)}s
                                             </p>
                                         </div>
                                         <div className="bg-gray-800 p-4 rounded-lg">
                                             <p className="text-white text-sm">État</p>
-                                            <p className="text-white font-bold">{currentStep || "En attente..."}</p>
+                                            <p className="text-white font-bold">{currentStep || "Waiting..."}</p>
                                         </div>
                                     </div>
                                 </Card>
@@ -897,7 +897,7 @@ export default function Page() {
                                             <div className="flex justify-between items-center">
                                                 <h3 className="text-xl font-bold text-white">Benchmarks</h3>
                                                 <Button onClick={runBenchmarks} disabled={sorting}>
-                                                    Lancer les benchmarks
+                                                    Run Benchmarks
                                                 </Button>
                                             </div>
 
@@ -911,7 +911,7 @@ export default function Page() {
                                         {/* Section Historique */}
                                         <div className="space-y-4">
                                             <div className="flex justify-between items-center">
-                                                <h3 className="text-xl font-bold text-white">Historique des tris</h3>
+                                                <h3 className="text-xl font-bold text-white">Sorting History</h3>
                                                 <div className="space-x-2">
                                                     <Button
                                                         onClick={() => exportData('csv')}
@@ -934,11 +934,11 @@ export default function Page() {
                                                 <Table>
                                                     <TableHeader>
                                                         <TableRow>
-                                                            <TableHead className="text-white">Algorithme</TableHead>
-                                                            <TableHead className="text-white">Taille</TableHead>
+                                                            <TableHead className="text-white">Algorithm</TableHead>
+                                                            <TableHead className="text-white">Size</TableHead>
                                                             <TableHead className="text-white">Comparaisons</TableHead>
-                                                            <TableHead className="text-white">Échanges</TableHead>
-                                                            <TableHead className="text-white">Temps (ms)</TableHead>
+                                                            <TableHead className="text-white">Swaps</TableHead>
+                                                            <TableHead className="text-white">Time (ms)</TableHead>
                                                             <TableHead className="text-white">Date</TableHead>
                                                         </TableRow>
                                                     </TableHeader>
@@ -972,11 +972,11 @@ export default function Page() {
 
                                         {/* Section Statistiques comparatives */}
                                         <div className="space-y-4">
-                                            <h3 className="text-xl font-bold text-white">Statistiques comparatives</h3>
+                                            <h3 className="text-xl font-bold text-white">Comparative Statistics</h3>
                                             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                                                 <Card className="p-4 bg-gray-800">
                                                     <h4 className="text-lg font-semibold text-white mb-2">
-                                                        Moyenne des temps d&#39;exécution
+                                                        Average Execution Time
                                                     </h4>
                                                     {Object.entries(averageStats).map(([alg, stats]) => (
                                                         <div key={alg} className="flex justify-between text-white">
@@ -988,7 +988,7 @@ export default function Page() {
 
                                                 <Card className="p-4 bg-gray-800">
                                                     <h4 className="text-lg font-semibold text-white mb-2">
-                                                        Nombre moyen de comparaisons
+                                                        Average Number of Comparisons
                                                     </h4>
                                                     {Object.entries(
                                                         sortHistory.reduce((acc, curr) => {
